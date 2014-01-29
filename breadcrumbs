@@ -1,0 +1,19 @@
+function breadCrumbs() {
+	global $post;
+
+	$ancestors = get_post_ancestors($post->ID);
+	if (!empty($ancestors)) {
+		
+		echo '<div id="breadcrumbs">';
+		
+		foreach($ancestors as $old) {
+			$title = get_post_field(post_title, $old);
+			$url = get_permalink($old);
+			echo '<a href="'. $url .'">'. $title .'</a> >';
+			} //end foreach
+			echo get_the_title();
+
+		echo '</div>';
+	} //end if
+
+}
